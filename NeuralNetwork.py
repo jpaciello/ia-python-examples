@@ -17,9 +17,11 @@ dataStats = data.describe()
 
 # Calcular variables con correlacion positiva o negativa superior a un umbral
 corMatrix = data.corr(numeric_only=True)
-corMatrix[(abs(corMatrix) > 0.75) & (corMatrix != 1)]['nasdaq'].dropna()
+print(corMatrix[(abs(corMatrix) > 0.75) & (corMatrix != 1)]['nasdaq'].dropna())
+
 
 # Scatterplot google y nasdaq
+
 data.plot.scatter(x='goog', y='nasdaq', c='DarkBlue')
 
 # Cargar funciones de la librería de python sklearn y math
@@ -49,8 +51,8 @@ d = pd.DataFrame({'y_val':y_val['nasdaq'].tolist(),'y_pred':y_pred.tolist()})
 d.plot.line(y=['y_pred','y_val'])
 
 # calcular coeficiente r2 y pearson
-print("Coeficiente r2: " + str(model.score(x, y)))
-print("Coeficiente de Pearson (r): " + str(sqrt(model.score(x, y))))
+#print("Coeficiente r2: " + str(model.score(x, y)))
+#print("Coeficiente de Pearson (r): " + str(sqrt(model.score(x, y))))
 
 # calcular root mean square error (RMSE) y mean absolute percetage error (MAPE)
 print("Raíz del Error cuadrático Medio (RMSE): " + str(root_mean_squared_error(y_val, y_pred)))
@@ -83,14 +85,14 @@ print(pca.components_)
 x_val = pca.transform(x_val)
 
 # entrenar el modelo y calcular predicciones
-model = MLPRegressor(hidden_layer_sizes=(4), max_iter=300,
+model = MLPRegressor(hidden_layer_sizes=(7), max_iter=2000,
                   activation='relu', solver='lbfgs', random_state=1)
 model.fit(x, y.values.ravel())
 y_pred = model.predict(x_val)
 
 # calcular coeficiente r2 y pearson
-print("Coeficiente r2: " + str(model.score(x, y)))
-print("Coeficiente de Pearson (r): " + str(sqrt(model.score(x, y))))
+#print("Coeficiente r2: " + str(model.score(x, y)))
+#print("Coeficiente de Pearson (r): " + str(sqrt(model.score(x, y))))
 
 # calcular root mean square error (RMSE) y mean absolute percetage error (MAPE)
 print("Raíz del Error cuadrático Medio (RMSE): " + str(root_mean_squared_error(y_val, y_pred)))

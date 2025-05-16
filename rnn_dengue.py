@@ -18,6 +18,7 @@ print(cm[(abs(cm['cantidad'])>=0.3)].cantidad)
 
 
 #Feature selection en base a correlación, evitando autoregressive model
+
 df = data[['temperatura_media_media(-7)','temperatura_media_media(-8)','temperatura_media_media(-9)',
            'temperatura_media_media(-10)','temperatura_media_media(-11)','nivel(-5)','nivel(-6)',
            'nivel(-7)','nivel(-8)','nivel(-9)','nivel(-10)','nivel(-11)', 'cantidad']]
